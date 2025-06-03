@@ -39,6 +39,11 @@ public class PersonController {
         List<Person> persons = personService.getAllPersons();
         return ResponseEntity.ok(persons);
     }
+
+    @GetMapping("/gettodaysbday")
+    public ResponseEntity<List<Person>> getTodayBdayPersons() {
+        return ResponseEntity.ok(personService.getListOfPersonHavingBdayToday());
+    }
     @GetMapping("/greet")
     public String greet(@RequestParam("name") String name) {
 

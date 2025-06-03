@@ -25,7 +25,8 @@ public class PersonServiceImpl implements PersonService {
 
 
     public List<Person> getListOfPersonHavingBdayToday() {
-        return personRepository.findBirthdayMatches(new Date().getDay(), new Date().getMonth());
+//        get month return 0-11 where 0 -jan and dec - 11 so, adding + 1 to get current month as per calender
+        return personRepository.findBirthdayMatches(new Date().getMonth() + 1, new Date().getDate());
     }
 
     @Override
