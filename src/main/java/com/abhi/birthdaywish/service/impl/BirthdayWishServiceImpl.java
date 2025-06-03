@@ -28,7 +28,7 @@ public class BirthdayWishServiceImpl implements BirthdayWishService {
                 .map(BdaywishMessage::getBirthdayWishMessage)
                 .orElse("🎉 Happy Birthday! Wishing you a joyful year ahead!");
         for (Person person : bdayPersonList) {
-            whatsAppClient.sendMessage(person.getMobileNumber(), "Hello " + person.getFirstName() + ", " + message);
+            whatsAppClient.sendMessage(person.getMobileNumber(), "Hi " + person.getFirstName() + " " +person.getLastName() + ", " + message);
         }
 
         System.out.println("✅ Birthday wishes sent to " + bdayPersonList.size() + " person(s).");

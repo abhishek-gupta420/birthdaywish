@@ -1,6 +1,7 @@
 package com.abhi.birthdaywish.scheduler;
 
 import com.abhi.birthdaywish.entities.Person;
+import com.abhi.birthdaywish.service.BirthdayWishService;
 import com.abhi.birthdaywish.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -10,12 +11,14 @@ import java.util.List;
 
 @Component
 public class BirthdayWishScheduler {
+    @Autowired
+    BirthdayWishService birthdayWishService;
 
     @Autowired
     private PersonService personService;
 
     // This scheduler runs every day at 7:00 AM
-    @Scheduled(cron = "0 0 7 * * ?")
+    @Scheduled(cron = "0 39 18 * * ?")
     public void runBirthdayWishScheduler() {
         List<Person> birthdayPersons = personService.getListOfPersonHavingBdayToday();
 
@@ -24,7 +27,7 @@ public class BirthdayWishScheduler {
         } else {
             System.out.println("🎉 Today's birthday people:");
             for (Person person : birthdayPersons) {
-                System.out.println("🎈 " + person.getFirstName() + " " + person.getLastName());
+                birthdayWishService.sendWishesToBirthdayPeople(birthdayPersons);
             }
         }
     }
