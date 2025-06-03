@@ -2,7 +2,6 @@ package com.abhi.birthdaywish.scheduler;
 
 import com.abhi.birthdaywish.entities.Person;
 import com.abhi.birthdaywish.service.PersonService;
-//import com.abhi.birthdaywish.dto.PersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
