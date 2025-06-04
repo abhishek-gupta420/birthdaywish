@@ -11,17 +11,25 @@ import org.springframework.stereotype.Service;
 public class TwilioInitializer {
 
     @Autowired
+    NotificationProperties notificationProperties;
+
+    @Autowired
     private TwilioConfigRepository configRepository;
 
     private String fromNumber;
 
     @PostConstruct
     public void init() {
-        TwilioConfigEntity config = configRepository.findById(1)
-                .orElseThrow(() -> new RuntimeException("Twilio config not found in DB"));
 
-        Twilio.init(config.getAccountSid(), config.getAuthToken());
-        this.fromNumber = config.getFromNumber();
+        if (notificationProperties.isWhatsappEnabled()) {
+            TwilioConfigEntity config = configRepository.findById(1)
+                    .orElseThrow(() -> new RuntimeException("Twilio config not found in DB"));
+
+            Twilio.init(config.getAccountSid(), config.getAuthToken());
+            this.fromNumber = config.getFromNumber();
+        } else {
+            System.out.println("WhatsApp notifications are disabled.");
+        }
     }
 
     public String getFromNumber() {

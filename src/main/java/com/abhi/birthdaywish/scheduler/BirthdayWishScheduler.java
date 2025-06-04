@@ -18,17 +18,14 @@ public class BirthdayWishScheduler {
     private PersonService personService;
 
     // This scheduler runs every day at 7:00 AM
-    @Scheduled(cron = "0 39 18 * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void runBirthdayWishScheduler() {
         List<Person> birthdayPersons = personService.getListOfPersonHavingBdayToday();
 
         if (birthdayPersons.isEmpty()) {
             System.out.println("🎂 No birthdays today.");
         } else {
-            System.out.println("🎉 Today's birthday people:");
-            for (Person person : birthdayPersons) {
                 birthdayWishService.sendWishesToBirthdayPeople(birthdayPersons);
-            }
         }
     }
 }
