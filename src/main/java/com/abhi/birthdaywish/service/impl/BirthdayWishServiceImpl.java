@@ -42,7 +42,7 @@ public class BirthdayWishServiceImpl implements BirthdayWishService {
             }
 
             if (notificationProperties.isEmailEnabled()) {
-                dynamicEmailService.sendBirthdayEmail(person.getEmailId(), person.getFirstName() + person.getLastName(), message);
+                dynamicEmailService.sendBirthdayEmail(person.getEmailId(), person.getFirstName() + " " + person.getLastName(), message);
             }
         }
 

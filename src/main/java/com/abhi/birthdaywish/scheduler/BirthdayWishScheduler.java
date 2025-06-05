@@ -18,7 +18,7 @@ public class BirthdayWishScheduler {
     private PersonService personService;
 
     // This scheduler runs every day at 7:00 AM
-    @Scheduled(cron = "0 0 0 * * ?")
+    @Scheduled(cron = "0 0 7 * * ?")
     public void runBirthdayWishScheduler() {
         List<Person> birthdayPersons = personService.getListOfPersonHavingBdayToday();
 
