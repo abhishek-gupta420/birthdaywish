@@ -6,9 +6,11 @@ import com.abhi.birthdaywish.entities.Person;
 import com.abhi.birthdaywish.repository.BdaywishMessageRepository;
 import com.abhi.birthdaywish.service.BirthdayWishService;
 import jakarta.annotation.PostConstruct;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class BirthdayWishServiceImpl implements BirthdayWishService {
     @Autowired
     NotificationProperties notificationProperties;
 
-    public void sendWishesToBirthdayPeople(List<Person> bdayPersonList) {
+    public void sendWishesToBirthdayPeople(List<Person> bdayPersonList) throws MessagingException, UnsupportedEncodingException {
 
 //        fetch bday wish message from db
         String message = messageRepository.findById(1L)
